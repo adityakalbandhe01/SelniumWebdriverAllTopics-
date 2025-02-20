@@ -18,16 +18,40 @@ public class isDisplayed {
 
         String url = "https://chroma-tech-academy.mexil.it/static_page/";
         driver.get(url);
-        // Scroll down to element using JS executor
+
+        WebElement ElementDisplayedExampleText = driver
+                .findElement(By.xpath("//legend[normalize-space()='Element Displayed Example']"));
+
+        // // Scroll down to element using JS executor
         Thread.sleep(2000);
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-        jsExecutor.executeScript("arguments[0].ScrollIntoView(true);", ElementDisplayedExampleText);
+        jsExecutor.executeScript("arguments[0].scrollIntoView(true);", ElementDisplayedExampleText);
 
-        WebElement Elementbutton = driver.findElement(By.xpath("//input[@id='displayed-text']"));
+        WebElement Hideshowexampletextbox = driver.findElement(By.xpath("//input[@id='displayed-text']"));
+        // // Hideshowexampletextbox.click();
+
+        // // Verifying if the textbox is displayed
+        boolean isTextboxDisplayed = Hideshowexampletextbox.isDisplayed();
+        System.out.println(isTextboxDisplayed);
+
+        // Clicking on Hide button
+        WebElement Hidebutton = driver.findElement(By.xpath("//input[@id='hide-textbox']"));
+        Hidebutton.click();
+
+        // Verifying again if the textbox is displayed
+        System.out.println(Hideshowexampletextbox.isDisplayed());
+
+        Thread.sleep(2000);
+
+        // clicking on Show button
+        WebElement Showbutton = driver.findElement(By.xpath("//input[@id='show-textbox']"));
+        Showbutton.click();
 
         // Verifying if the textbox is displayed
-        boolean isTextboxDisplayed = Elementbutton.isDisplayed();
-        System.out.println(isTextboxDisplayed);
+        System.out.println(Hideshowexampletextbox.isDisplayed());
+
+        Thread.sleep(2000);
+        driver.quit();
 
     }
 
